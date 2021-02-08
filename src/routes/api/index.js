@@ -1,15 +1,9 @@
 const routes = require("express").Router();
 
-const { httpVerify, generateToken } = require("../../helpers/jwt");
+const { login } = require("../../controllers/auth");
+const { verifyToken } = require("../../helpers/jwt");
 
-routes.get("/api/login", (req, res, next) => {
-  try {
-    const token = generateToken({ userAgent: req.get("User-Agent") });
-    return res.json({ token });
-  } catch (error) {
-    next(error);
-  }
-});
+routes.get("/login", login);
 
 // Exemplo de rota livre de autenticação
 routes.get("/free", (req, res) => {
@@ -17,7 +11,7 @@ routes.get("/free", (req, res) => {
 });
 
 // Exemplo de rota bloqueada para autenticação
-routes.get("/blocked", httpVerify, (req, res) => {
+routes.get("/blocked", verifyToken, (req, res) => {
   return res.send("");
 });
 

@@ -11,7 +11,7 @@ routes.use("/api", require("./api/"));
 
 // Rota não encontrada
 routes.use("/", function (req, res) {
-  return res.status(400).json(router_not_found);
+  return res.status(404).json(router_not_found);
 });
 
 // Tratando envio de erros

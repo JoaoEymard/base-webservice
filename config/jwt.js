@@ -3,5 +3,5 @@
  */
 
 module.exports = {
-  sign: { expiresIn: "1h" },
+  sign: { expiresIn: "6h" },
 };
